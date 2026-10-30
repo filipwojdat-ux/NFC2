@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM ERROR</title>
+    <style>
+        body {
+            background-color: #0d0000;
+            color: #ff3333;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+        .container {
+            border: 2px solid #ff3333;
+            background-color: #1a0000;
+            padding: 30px 20px;
+            margin-top: 10vh;
+            box-shadow: 0 0 20px #ff0000;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            animation: blink 1s infinite;
+        }
+        .warning-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ff9999;
+        }
+        .ransom-text {
+            color: #ffffff;
+            font-weight: bold;
+            background-color: #4a0000;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px dashed #ff0000;
+            margin: 20px 0;
+        }
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff0000;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .btn {
+            background-color: #ff3333;
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px #ff3333;
+        }
+        .btn:hover {
+            background-color: #ff6666;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="warning-icon">⚠️</div>
+    <h1>SYSTEM ZABLOKOWANY!</h1>
+    <p>Wykryto nieautoryzowany dostęp użytkownika. Pliki systemowe zostały zaszyfrowane za pomocą algorytmu NFC-CHOCO-256.</p>
+    
+    <div class="timer" id="countdown">05:00</div>
+    
+    <p>Aby odblokować telefon i zapobiec całkowitej utracie danych, musisz uiścić natychmiastową opłatę okupową:</p>
+    
+    <div class="ransom-text">
+        🍫 WYMAGANY OKUP:<br>
+        1x Duża czekolada (najlepiej z okienkiem lub orzechami)<br>
+        Dostarczona do właściciela tego tagu NFC!
+    </div>
+    
+    <p>Po przekazaniu słodyczy, system powróci do normy.</p>
+    <br>
+    <button class="btn" onclick="releaseSystem()">Zapłać okup (Mam czekoladę)</button>
+</div>
+
+<script>
+    // Odliczanie czasu dla paniki
+    let time = 300; 
+    const countdownEl = document.getElementById('countdown');
+
+    setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        if (time > 0) time--;
+    }
+
+    // Próba zablokowania przycisku wstecz (czysta złośliwość)
+    window.onload = function () {
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            window.history.pushState(null, null, window.location.href);
+            alert("BŁĄD: Próba ucieczki wykryta. Zapłać czekoladą!");
+        };
+    }
+
+    function releaseSystem() {
+        alert("Autoryzacja pomyślna. Oczekuję na fizyczną dostawę cukru. Możesz już zamknąć kartę!");
+        window.close();
+    }
+</script>
+
+</body>
+</html>
